@@ -4,12 +4,17 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import android.content.Intent;
 import android.os.Bundle;
+import android.view.View;
+import android.widget.Button;
+import android.widget.ImageButton;
 
 import com.example.kursach.adapter.CategoryAdapter;
 import com.example.kursach.adapter.CourseAdapter;
 import com.example.kursach.model.Category;
 import com.example.kursach.model.Course;
+import com.example.kursach.utils.DBHelper;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -19,32 +24,50 @@ public class MainActivity extends AppCompatActivity {
 
     RecyclerView categoryRecycler, courseRecycler;
 CategoryAdapter categoryAdapter;
-CourseAdapter courseAdapter;
-    private List<Course> courseList;
+ImageButton imageButton;
+static CourseAdapter courseAdapter;
+static List<Course> courseList = new ArrayList<>();
+    static List<Course> fullCourseList = new ArrayList<>();
+
+    DBHelper db;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        List<Category> categoryList = new ArrayList<>();
-        categoryList.add(new Category(1 , "Игры"));
-        categoryList.add(new Category(2 , "Сайты"));
-        categoryList.add(new Category(3 , "Языки"));
-        categoryList.add(new Category(4 , "Прочее"));
+        db = new DBHelper(MainActivity.this);
+        List<Category> categoryList = db.readCategories();
 
         setCategoryRecycler(categoryList);
 
-        courseList = new ArrayList<>();
-        courseList.add(new Course(1 , "java", "Профессия Java\nразработчик", "1 января", "начальный", "#424345"));
-        courseList.add(new Course(2 , "python", "Профессия Python\nразработчик", "10 января", "начальный", "#9FA52D"));
+       courseList = db.readCourses();
 
 
-        setCourseRecycler(categoryList);
+fullCourseList.addAll(courseList);
+
+        setCourseRecycler(courseList);
+
+        imageButton = findViewById(R.id.imageButton);
+        imageButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(MainActivity.this, OrderPage.class);
+                startActivity(intent);
+            }
+        });
 
     }
 
-    private void setCourseRecycler(List<Category> categoryList) {
+    public void openShoppingCart(View view) {
+
+        Intent intent = new Intent(this, OrderPage.class);
+        startActivity(intent);
+
+    }
+
+
+    private void setCourseRecycler(List<Course> courseList) {
 
         RecyclerView.LayoutManager layoutManager = new LinearLayoutManager(this, RecyclerView.HORIZONTAL, false);
 
@@ -67,4 +90,33 @@ categoryAdapter = new CategoryAdapter(this, categoryList);
 categoryRecycler.setAdapter(categoryAdapter);
 
 }
+
+public static void showCoursesByCategory(int category) {
+
+    courseList.clear();
+    courseList.addAll(fullCourseList);
+
+List<Course> filterCourses = new ArrayList<>();
+
+for(Course c : courseList) {
+    if(c.getCategoryId() == category)
+        filterCourses.add(c);
+
+}
+
+courseList.clear();
+courseList.addAll(filterCourses);
+
+courseAdapter.notifyDataSetChanged();
+
+}
+
+    public void onResume() {
+        super.onResume();
+        courseList = db.readCourses();
+        courseAdapter = new CourseAdapter(this, courseList);
+        courseRecycler.setAdapter(courseAdapter);
+        courseAdapter.notifyDataSetChanged();
+    }
+
 }

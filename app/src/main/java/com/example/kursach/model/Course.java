@@ -2,16 +2,18 @@ package com.example.kursach.model;
 
 public class Course {
 
-    int id;
-    String img, title, date, level, color;
 
-    public Course(int id, String img, String title, String date, String level, String color) {
-        this.id = id;
-        this.img = img;
-        this.title = title;
-        this.date = date;
-        this.level = level;
-        this.color = color;
+    private int id, categoryId, levelId;
+    private String img, title, date, level, color,text;
+
+
+
+    public String getText() {
+        return text;
+    }
+
+    public void setText(String text) {
+        this.text = text;
     }
 
     public int getId() {
@@ -60,5 +62,22 @@ public class Course {
 
     public void setColor(String color) {
         this.color = color;
+    }
+
+
+    public int getCategoryId() {
+        return categoryId;
+    }
+
+    public void setCategoryId(int categoryId) {
+        this.categoryId = categoryId;
+    }
+
+    public int getLevelId() {
+        return levelId;
+    }
+
+    public void setLevelId(int levelId) {
+        this.levelId = levelId;
     }
 }

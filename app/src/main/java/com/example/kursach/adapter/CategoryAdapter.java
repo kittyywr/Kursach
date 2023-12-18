@@ -5,6 +5,8 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
+
+import com.example.kursach.MainActivity;
 import com.example.kursach.model.Category;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
@@ -35,6 +37,15 @@ public class CategoryAdapter extends RecyclerView.Adapter<CategoryAdapter.Catego
     public void onBindViewHolder(@NonNull CategoryViewHolder holder, int position) {
         Category category = categories.get(position);
        holder.categoryTitle.setText(category.getTitle());
+
+       holder.itemView.setOnClickListener(new View.OnClickListener() {
+           @Override
+           public void onClick(View v) {
+
+               MainActivity.showCoursesByCategory(categories.get(position).getId());
+
+           }
+       });
 
     }
 

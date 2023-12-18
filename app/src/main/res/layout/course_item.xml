@@ -3,7 +3,8 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="wrap_content"
-    android:layout_height="wrap_content">
+    android:layout_height="wrap_content"
+    android:layout_marginHorizontal="10dp">
 
     <androidx.cardview.widget.CardView
         android:id="@+id/cardView"
@@ -19,28 +20,28 @@
         android:id="@+id/courseBg"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
+        android:background="@color/black"
         android:orientation="vertical"
-        android:paddingBottom="40dp"
-        android:background="@color/black">
+        android:paddingBottom="40dp">
 
         <ImageView
             android:id="@+id/courseImage"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:contentDescription="@string/app_name"
-            app:srcCompat="@drawable/java_2" />
+            app:srcCompat="@drawable/ic_java" />
 
         <TextView
             android:id="@+id/courseTitle"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:textColor="@color/white"
-            android:fontFamily="@font/montserrat_bold"
-            android:textSize="20sp"
             android:layout_margin="10dp"
-           android:text="@string/app_name" />
-        
-        
+            android:fontFamily="@font/montserrat_bold"
+            android:text="@string/app_name"
+            android:textColor="@color/white"
+            android:textSize="20sp" />
+
+
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent">
@@ -48,21 +49,21 @@
             <TextView
                 android:layout_width="100dp"
                 android:layout_height="wrap_content"
-                android:textColor="@color/white"
-                android:fontFamily="@font/montserrat"
-                android:textSize="14sp"
                 android:layout_margin="10dp"
-                android:text="@string/course_start_date" />
+                android:fontFamily="@font/montserrat"
+                android:text="@string/course_start_date"
+                android:textColor="@color/white"
+                android:textSize="14sp" />
 
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:textColor="@color/white"
-                android:fontFamily="@font/montserrat"
-                android:textSize="14sp"
-               android:layout_marginTop="20dp"
                 android:layout_marginStart="25dp"
-                android:text="@string/course_level" />
+                android:layout_marginTop="20dp"
+                android:fontFamily="@font/montserrat"
+                android:text="@string/course_level"
+                android:textColor="@color/white"
+                android:textSize="14sp" />
 
         </LinearLayout>
 
@@ -74,25 +75,25 @@
                 android:id="@+id/courseDate"
                 android:layout_width="100dp"
                 android:layout_height="wrap_content"
-                android:textColor="@color/white"
-                android:fontFamily="@font/montserrat_bold"
-                android:textSize="14sp"
                 android:layout_margin="10dp"
-                android:text="@string/app_name" />
+                android:fontFamily="@font/montserrat_bold"
+                android:text="@string/app_name"
+                android:textColor="@color/white"
+                android:textSize="14sp" />
 
             <TextView
                 android:id="@+id/courseLevel"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:textColor="@color/white"
-                android:fontFamily="@font/montserrat"
-                android:textSize="14sp"
-                android:layout_marginTop="10dp"
                 android:layout_marginStart="25dp"
-                android:text="@string/app_name" />
+                android:layout_marginTop="10dp"
+                android:fontFamily="@font/montserrat"
+                android:text="@string/app_name"
+                android:textColor="@color/white"
+                android:textSize="14sp" />
 
         </LinearLayout>
 
-        </LinearLayout>
+    </LinearLayout>
 
 </androidx.constraintlayout.widget.ConstraintLayout>

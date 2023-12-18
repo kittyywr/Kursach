@@ -1,6 +1,7 @@
 package com.example.kursach.model;
 
-public class Category {
+public class Levels {
+
 
     int id;
     String title;
